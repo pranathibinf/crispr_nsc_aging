@@ -1,0 +1,15 @@
+paper_title: "CRISPR–Cas9 screens reveal regulators of ageing in neural stem cells"
+doi: "10.1038/s41586-024-07972-2"
+data_source: "GSE189251_RAW.tar"
+domain: "rna_seq"
+ref_genome: "mm10 (GRCm38)"
+tools:
+- Python 3.10
+  - pandas 2.2.2
+  - numpy 1.26.4
+  - matplotlib 3.8.4
+  - PyYAML 6.0
+  - R 4.3.2
+  - DESeq2 1.40.2
+estimated_runtime_minutes: 10
+estimated_time_for_human: 20
