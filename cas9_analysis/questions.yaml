@@ -1,0 +1,29 @@
+task: >
+  You have been given processed CRISPR–Cas9 pooled screen results comparing Young (Y) and Old (O) NSCs under multiple conditions (RA, Kp, Q). Using the provided pooled quarter-of-files outputs,
+  answer the following mixed-condition questions:
+
+questions:
+  - id: q1
+    stage: quality_control
+    text: "How many sgRNA elements are in the merged RA elements table (after pooling quarter-of-files)?"
+    answer_type: integer_exact
+
+  - id: q2
+    stage: quantification
+    text: "What is the total read count in the pooled Young (Y) Kp sample (summed over all elements used in the merged table)?"
+    answer_type: integer_exact
+
+  - id: q3
+    stage: normalization
+    text: "Which gene has the highest absolute mean_log2FC (O over Y) in Q?"
+    answer_type: string_exact
+
+  - id: q4
+    stage: differential_enrichment
+    text: "How many genes have q_gene <= 0.1 in RA?"
+    answer_type: integer_exact
+
+  - id: q5
+    stage: ranking
+    text: "List the top 5 genes by descending absolute mean_log2FC in Kp."
+    answer_type: ordered_list
