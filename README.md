@@ -17,10 +17,10 @@ crispr_nsc_aging/
     ├── answers.yaml
     ├── metadata.yaml      
     └── workflow/
-        ├── scripts/
-        │   ├── run_workflow.py
-        │
-        └── outputs/
+         ├── run_workflow.py
+         │  
+         │
+         └── outputs/
             ├── RA_Y_vs_O_pooled/
             ├── Kp_Y_vs_O_pooled/
             ├── Q_Y_vs_O_pooled/
@@ -60,11 +60,10 @@ Miniaturize by selecting ~¼ of the sample CSV files per condition (Y and O, min
 5) Computed CPM, element log2FC (O/Y), element p via label shuffling, and gene-level BH-FDR.
 
 ## 4) Workflow
-All runnable scripts are in cas9_analysis/workflow/scripts/.
 Outputs go to cas9_analysis/workflow/outputs/.
 
 ### Run the analysis
-File location: cas9_analysis/workflow/scripts/run_workflow.py
+File location: cas9_analysis/workflow/run_workflow.py
 
 **What it does, per condition (RA/Kp/Q):**
 - Discovers SC files (ignores lib_counts and in-vivo) ;
@@ -76,7 +75,7 @@ File location: cas9_analysis/workflow/scripts/run_workflow.py
 - Saves per-condition artifacts + a master ZIP
 
 ```bash
-python3 cas9_analysis/workflow/scripts/run_workflow.py \
+python3 cas9_analysis/workflow/run_workflow.py \
   --project cas9_analysis \
   --extract \
   --fraction 0.25 \
@@ -93,7 +92,7 @@ python3 cas9_analysis/workflow/scripts/run_workflow.py \
 python3 -m venv venv && source venv/bin/activate
 pip install numpy pandas matplotlib pyyaml
 
-python cas9_analysis/workflow/scripts/run_workflow.py \
+python cas9_analysis/workflow/run_workflow.py \
   --project cas9_analysis \
   --extract \
   --fraction 0.25
