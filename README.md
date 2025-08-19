@@ -76,7 +76,7 @@ File location: cas9_analysis/workflow/scripts/run_workflow.py
 - Saves per-condition artifacts + a master ZIP
 
 ```bash
-python cas9_analysis/workflow/scripts/run_workflow.py \
+python3 cas9_analysis/workflow/scripts/run_workflow.py \
   --project cas9_analysis \
   --extract \
   --fraction 0.25 \
@@ -89,11 +89,16 @@ python cas9_analysis/workflow/scripts/run_workflow.py \
 
 ## 5) Reproduce locally
 
-``bash
+```bash
 python3 -m venv venv && source venv/bin/activate
 pip install numpy pandas matplotlib pyyaml
-python cas9_analysis/workflow/scripts/run_workflow.py --project cas9_analysis --extract --fraction 0.25
+
+python cas9_analysis/workflow/scripts/run_workflow.py \
+  --project cas9_analysis \
+  --extract \
+  --fraction 0.25
 ```
+
 **Notes:**
 
 1) Uses ¼ of files per condition (Y/O) — not count thinning.
