@@ -2,10 +2,10 @@
 """
 run_workflow.py — Mini CRISPR NSC analysis on processed counts (GSE189251)
 
-Layout (relative to --project, default "."):
+Expected layout (in the *cas9_analysis* folder):
   data/raw/         : GSE189251_RAW.tar lives here
   data/processed/   : extracted *_counts.csv.gz
-  cas9_analysis/workflow/outputs/<COND>_Y_vs_O_pooled/ : results
+  workflow/outputs/<COND>_Y_vs_O_pooled/ : results
 
 Pipeline per condition (RA, Kp, Q):
   • pick ~1/4 of SC files for Y and for O (min 1 each)
@@ -71,10 +71,12 @@ def pool_group(paths):
 def ensure_dir(p): os.makedirs(p, exist_ok=True)
 
 def run(args):
+    # --project should be the cas9_analysis folder
     PROJECT  = args.project
     RAW_DIR  = os.path.join(PROJECT, "data", "raw")
     PROC_DIR = os.path.join(PROJECT, "data", "processed")
-    OUT_ROOT = os.path.join(PROJECT, "cas9_analysis", "workflow", "outputs")
+    OUT_ROOT = os.path.join(PROJECT, "workflow", "outputs")  # <-- fixed
+
     for d in (RAW_DIR, PROC_DIR, OUT_ROOT): ensure_dir(d)
 
     tar_path = os.path.join(RAW_DIR, "GSE189251_RAW.tar")
@@ -201,8 +203,12 @@ def run(args):
     print("[done] master zip:", master)
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(description="CRISPR NSC mini-pipeline on processed counts")
-    ap.add_argument("--project", default=".", help="repo root (contains data/ and cas9_analysis/)")
+    ap = argparse.ArgumentParser(
+        description="CRISPR NSC mini-pipeline on processed counts. "
+                    "--project should point to the cas9_analysis folder."
+    )
+    ap.add_argument("--project", default="cas9_analysis",
+                    help="path to cas9_analysis (contains data/ and workflow/)")
     ap.add_argument("--download", action="store_true")
     ap.add_argument("--extract", action="store_true")
     ap.add_argument("--fraction", type=float, default=0.25)
